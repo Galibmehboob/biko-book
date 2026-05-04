@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       data-theme='light'
       className={`${poppins.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#fff8ee]">
         <Navbar></Navbar>
         <main className="w-7xl mx-auto">
           {children}
