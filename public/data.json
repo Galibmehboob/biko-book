@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "The Silent Forest",
+    "author": "Emma Carter",
+    "description": "A mysterious journey through an ancient forest filled with hidden secrets and forgotten legends.",
+    "category": "Story",
+    "available_quantity": 14,
+    "image_url": "/Image/the-silent-forest.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Mastering JavaScript",
+    "author": "Daniel Brooks",
+    "description": "A practical guide to modern JavaScript development with real-world examples and projects.",
+    "category": "Tech",
+    "available_quantity": 9,
+    "image_url": "/Image/mastering-javascript.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Beyond the Stars",
+    "author": "Sophia Lee",
+    "description": "An exploration of galaxies, black holes, and the mysteries of the universe.",
+    "category": "Science",
+    "available_quantity": 11,
+    "image_url": "/Image/beyond-the-stars.jpg"
+  },
+  {
+    "id": 4,
+    "title": "The Lost Kingdom",
+    "author": "Michael Turner",
+    "description": "A young hero discovers an ancient kingdom hidden beneath the mountains.",
+    "category": "Story",
+    "available_quantity": 7,
+    "image_url": "/Image/the-lost-kingdom.jpg"
+  },
+  {
+    "id": 5,
+    "title": "React in Action",
+    "author": "Olivia Green",
+    "description": "Learn how to build fast and scalable web applications using React and modern tools.",
+    "category": "Tech",
+    "available_quantity": 13,
+    "image_url": "/Image/react-in-action.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Quantum Wonders",
+    "author": "Nathan Hall",
+    "description": "An introduction to quantum physics explained in a simple and engaging way.",
+    "category": "Science",
+    "available_quantity": 5,
+    "image_url": "/Image/quantum-wonders.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Whispers of the Night",
+    "author": "Grace Miller",
+    "description": "A suspenseful tale of secrets, betrayal, and unexpected friendships.",
+    "category": "Story",
+    "available_quantity": 10,
+    "image_url": "/Image/whispers-of-the-night.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Python for Beginners",
+    "author": "Ethan Walker",
+    "description": "A beginner-friendly introduction to Python programming with exercises and projects.",
+    "category": "Tech",
+    "available_quantity": 16,
+    "image_url": "/Image/python-for-beginners.jpg"
+  },
+  {
+    "id": 9,
+    "title": "The Human Brain",
+    "author": "Isabella Young",
+    "description": "Discover how the human brain works and how it shapes our thoughts and emotions.",
+    "category": "Science",
+    "available_quantity": 8,
+    "image_url": "/Image/the-human-brain.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Echoes of Time",
+    "author": "Henry Scott",
+    "description": "A time-travel adventure that changes the fate of an entire civilization.",
+    "category": "Story",
+    "available_quantity": 6,
+    "image_url": "/Image/echoes-of-time.webp"
+  },
+  {
+    "id": 11,
+    "title": "Cybersecurity   ",
+    "author": "Liam Johnson",
+    "description": "Understand the fundamentals of cybersecurity and how to protect digital systems.",
+    "category": "Tech",
+    "available_quantity": 12,
+    "image_url": "/Image/cybersecurity-essentials.jpg"
+  },
+  {
+    "id": 12,
+    "title": "Secrets of DNA",
+    "author": "Ava Wilson",
+    "description": "A fascinating look into genetics, DNA structure, and modern biotechnology.",
+    "category": "Science",
+    "available_quantity": 4,
+    "image_url": "/Image/secrets-of-dna.jpg"
+  }
+]
