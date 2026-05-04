@@ -6,7 +6,7 @@ import { GrGoogle } from "react-icons/gr";
 
 const SignInPage = () => {
 
-    // const [loginError, setLoginError] = useState("");
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -25,17 +25,21 @@ const SignInPage = () => {
 
         console.log("sign Up Response", data, error);
 
-        // if (error) {
-        //     setLoginError("Invalid password");
-        //     return;
+
     };
 
 
     const handleGoogleSignIn = async () => {
-        await authClient.signIn.social({
-            provider: "google"
-        })
-    }
+        try {
+            const res = await authClient.signIn.social({
+                provider: "google",
+            });
+
+            console.log("SUCCESS:", res);
+        } catch (err) {
+            console.error("AUTH ERROR:", err);
+        }
+    };
 
 
 

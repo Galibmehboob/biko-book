@@ -25,7 +25,7 @@ const Navbar = () => {
     console.log(session);
 
     return (
-        <nav className="sticky top-0 z-50 px-4 sm:px-6 text-white bg-white/70 backdrop-blur-md">
+        <nav className="sticky top-0 z-50 px-4 md:px-6 py-2 text-white bg-white/70 backdrop-blur-md">
             <div className="flex items-center justify-between">
 
                 <Link href="/">
@@ -33,17 +33,17 @@ const Navbar = () => {
                         <Image
                             src={'/biko.png'}
                             alt="logo"
-                            width={60}
-                            height={60}
+                            width={50}
+                            height={50}
+                            className="md:w-[60px] md:h-[60px]"
                         />
-                        <h3 className="text-md text-red-500 font-bold">
+                        <h3 className="text-sm md:text-md text-red-500 font-bold leading-tight">
                             Biko <br /> Book
                         </h3>
                     </div>
                 </Link>
 
-                {/* desktop menu */}
-                <div className="hidden md:flex gap-6 lg:gap-8 text-black">
+                <div className="hidden md:flex gap-8 text-black">
                     <Link
                         href="/"
                         className={`px-3 py-1 rounded-md ${pathname === "/" ? "border-b-2 border-t-2 border-[#b90050] " : ""
@@ -69,7 +69,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* auth buttons desktop */}
                 <div className="hidden md:block">
                     {session ? (
                         <div className="flex gap-3">
@@ -80,16 +79,16 @@ const Navbar = () => {
                                 </Avatar>
                             </Link>
 
-                            <Button onClick={handleSignOut} size="sm" variant="danger">
-                                Sign Out
-                            </Button>
+                            <Link href="/signin">
+                                <Button onClick={handleSignOut} size="sm" variant="danger" className="">Sign Out</Button>
+                            </Link>
                         </div>
-
                     ) : (
                         <div className="flex gap-3">
                             <Link href="/signin">
                                 <Button className="bg-[#b90050]">Sign In</Button>
                             </Link>
+
                             <Link href="/signup">
                                 <Button className="bg-[#b90050]">Sign Up</Button>
                             </Link>
@@ -97,27 +96,65 @@ const Navbar = () => {
                     )}
                 </div>
 
-                {/* mobile menu button */}
                 <div className="md:hidden text-black">
-                    <button onClick={() => setMenuOpen(!menuOpen)}>☰</button>
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        className="text-2xl"
+                    >
+                        ☰
+                    </button>
                 </div>
             </div>
 
-            {/* mobile dropdown */}
             {menuOpen && (
-                <div className="mt-4 flex flex-col text-black gap-4 md:hidden">
+                <div className="mt-4 pb-4 flex flex-col text-black gap-4 md:hidden">
                     <Link href="/">Home</Link>
                     <Link href="/allBooks">All Books</Link>
                     <Link href="/profile">Profile</Link>
 
-                    <div className="flex gap-3">
-                        <Link href="/signin">
-                            <Button className="bg-[#b90050]">Sign In</Button>
-                        </Link>
-                        <Link href="/signup">
-                            <Button className="bg-[#b90050]">Sign Up</Button>
-                        </Link>
-                    </div>
+                    {session ? (
+                        <div className="flex flex-col gap-3">
+                            <Link href="/profile">
+                                <div className="flex items-center gap-3">
+                                    <Avatar size="sm">
+                                        <Avatar.Image
+                                            alt="John Doe"
+                                            referrerPolicy="no-referrer"
+                                            src={session.user?.image}
+                                        />
+                                        <Avatar.Fallback>
+                                            {session.user?.name?.slice(0, 2).toUpperCase()}
+                                        </Avatar.Fallback>
+                                    </Avatar>
+
+                                    <span>{session.user?.name}</span>
+                                </div>
+                            </Link>
+
+                            <Link href="/signin">
+                                <Button
+                                    onClick={handleSignOut}
+                                    className="bg-[#b90050] w-full"
+                                >
+                                    Sign Out
+                                </Button>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-3">
+                            <Link href="/signin">
+                                <Button className="bg-[#b90050] w-full">
+                                    Sign In
+                                </Button>
+                            </Link>
+
+                            <Link href="/signup">
+                                <Button className="bg-[#b90050] w-full">
+                                    Sign Up
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             )}
         </nav>
