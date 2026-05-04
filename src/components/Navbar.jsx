@@ -4,11 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Avatar, Button } from "@heroui/react";
 
+import { usePathname } from "next/navigation";
+
 
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const pathname = usePathname();
 
     return (
         <nav className="sticky top-0 z-50 px-6 text-white bg-white/70 backdrop-blur-md">
@@ -29,9 +31,29 @@ const Navbar = () => {
                 </Link>
 
                 <div className="hidden md:flex gap-8 text-black">
-                    <Link href="/">Home</Link>
-                    <Link href="/allBooks">All Books</Link>
-                    <Link href="/profile">Profile</Link>
+                    <Link
+                        href="/"
+                        className={`px-3 py-1 rounded-md ${pathname === "/" ? "border-b-2 border-t-2 border-[#b90050] " : ""
+                            }`}
+                    >
+                        Home
+                    </Link>
+
+                    <Link
+                        href="/allBooks"
+                        className={`px-3 py-1 rounded-md ${pathname === "/allBooks" ? "border-b-2 border-t-2 border-[#b90050] " : ""
+                            }`}
+                    >
+                        All Books
+                    </Link>
+
+                    <Link
+                        href="/profile"
+                        className={`px-3 py-1 rounded-md ${pathname === "/profile" ? "border-b-2 border-t-2 border-[#b90050] " : ""
+                            }`}
+                    >
+                        Profile
+                    </Link>
                 </div>
 
                 <div className="hidden md:block">
