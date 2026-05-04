@@ -74,11 +74,12 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     {session ? (
                         <div className="flex gap-3">
-                            <Avatar size="sm">
-                                {/* <p className="text-black flex items-center gap-3">Hey,<span className="bg-blue-200 p-3 rounded-full flex "> </span></p> */}
-                                <Avatar.Image alt="John Doe" referrerPolicy="no-referrer" src={session.user?.image} />
-                                <Avatar.Fallback>{session.user?.name?.slice(0, 2).toUpperCase()}</Avatar.Fallback>
-                            </Avatar>
+                            <Link href="/profile">
+                                <Avatar size="sm">
+                                    {/* <p className="text-black flex items-center gap-3">Hey,<span className="bg-blue-200 p-3 rounded-full flex "> </span></p> */}
+                                    <Avatar.Image alt="John Doe" referrerPolicy="no-referrer" src={session.user?.image} />
+                                    <Avatar.Fallback>{session.user?.name?.slice(0, 2).toUpperCase()}</Avatar.Fallback>
+                                </Avatar></Link>
                             <Link href="/signin">
                                 <Button onClick={handleSignOut} size="sm" variant="danger" className="">Sign Out</Button>
                             </Link>

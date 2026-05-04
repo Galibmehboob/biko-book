@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Avatar } from "@heroui/react";
 import { UpdateUser } from "@/components/UpdateUser";
+import { redirect } from "next/navigation";
 
 
 const ProfilePage = () => {
@@ -25,13 +26,10 @@ const ProfilePage = () => {
         );
     }
 
-    if (!session) {
-        return (
-            <div className="h-screen flex items-center justify-center">
-                <p className="text-red-500">Not logged in</p>
-            </div>
-        );
-    }
+    // if (!session) {
+    //     redirect('/signin')
+
+    // }
 
     const user = session.user;
 
