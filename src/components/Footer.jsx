@@ -9,17 +9,18 @@ const Footer = () => {
 
                 <div>
                     <div className="flex justify-start items-center">
-                        <Image
+                        <Link href='/'>
+                            <Image
 
-                            src={'/biko.png'}
+                                src={'/biko.png'}
+                                loading="eager"
+                                alt="logo"
+                                width={70}
+                                height={70}
+                            >
 
-                            loading="eager"
-                            alt="logo"
-                            width={70}
-                            height={70}
-                        >
-
-                        </Image>
+                            </Image>
+                        </Link>
                         <h2 className="text-xl font-bold text-white">Biko <br /> Book</h2>
                     </div>
                     <p className="mt-2 text-sm">

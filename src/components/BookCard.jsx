@@ -7,7 +7,7 @@ const BookCard = ({ book }) => {
 
 
     return (
-        <div className="border  rounded-xl shadow-md w-70 p-4 hover:shadow-xl transition space-y-2">
+        <div className="border  rounded-xl shadow-md w-70 bg-white p-4 hover:shadow-xl transition space-y-2">
             <div className=" flex justify-center items-center">
                 <div className="  relative  w-40 h-60">
                     <Image

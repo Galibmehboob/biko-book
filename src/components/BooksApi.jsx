@@ -32,7 +32,7 @@ const BooksApi = () => {
                     <button
                         key={cat}
                         onClick={() => setCategory(cat)}
-                        className={`px-4 py-2 rounded ${category === cat
+                        className={`px-4 py-2 rounded cursor-pointer ${category === cat
                             ? "bg-black text-white"
                             : "bg-gray-200"
                             }`}
