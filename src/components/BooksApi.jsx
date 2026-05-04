@@ -2,7 +2,9 @@ import React from 'react';
 import BookCard from './BookCard';
 
 const BooksApi = async () => {
-    const res = await fetch('https://biko-book.vercel.app/data.json')
+    const res = await fetch('/data.json', {
+        cache: 'no-store'
+    });
     const data = await res.json()
 
     const topBooks = data.slice(0, 4)
