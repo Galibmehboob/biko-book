@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
+import { UpdateUser } from "@/components/UpdateUser";
+
 
 const ProfilePage = () => {
     const [session, setSession] = useState(null);
@@ -33,14 +36,20 @@ const ProfilePage = () => {
     const user = session.user;
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center">
 
-            <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 text-center">
+            <div className="w-full max-w-md bg-white shadow-lg rounded-2xl space-y-3 p-6 text-center">
 
 
                 <div className="w-20 h-20 mx-auto bg-[#b90050] text-white rounded-full flex items-center justify-center text-2xl font-bold">
-                    {user?.name?.charAt(0)}
+
+                    <Avatar >
+
+                        <Avatar.Image alt="John Doe" referrerPolicy="no-referrer" src={user?.image} />
+                        <Avatar.Fallback>{user?.name?.charAt(0).toUpperCase()}</Avatar.Fallback>
+                    </Avatar>
                 </div>
+
 
 
                 <h1 className="mt-4 text-xl font-semibold text-black">
@@ -62,9 +71,9 @@ const ProfilePage = () => {
                 <div className="mt-5 text-sm text-gray-600 space-y-2">
 
                     <p>
-                        Email Verified:{" "}
+                        Email :{" "}
                         <span className={user?.emailVerified ? "text-green-600" : "text-red-500"}>
-                            {user?.emailVerified ? "Yes" : "No"}
+                            {user?.emailVerified ? `Verified ` : "Not Verified"}
                         </span>
                     </p>
 
@@ -75,6 +84,7 @@ const ProfilePage = () => {
 
                 </div>
 
+                <UpdateUser user={user} setSession={setSession}></UpdateUser>
             </div>
 
         </div>
