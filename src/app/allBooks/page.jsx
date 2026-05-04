@@ -3,7 +3,7 @@ import BookCard from "@/components/BookCard";
 
 const AllBooks = async () => {
 
-    const res = await fetch('http://localhost:3000/data.json');
+    const res = await fetch('');
     const books = await res.json();
 
     console.log(books);

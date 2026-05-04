@@ -7,7 +7,7 @@ import { CiHeart } from "react-icons/ci";
 
 const BooksDetails = async ({ params }) => {
     const { id } = await params;
-    const res = await fetch('http://localhost:3000/data.json')
+    const res = await fetch('')
     const books = await res.json()
 
     const book = books.find(p => p.id == id)

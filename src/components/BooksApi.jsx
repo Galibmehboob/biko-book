@@ -2,7 +2,7 @@ import React from 'react';
 import BookCard from './BookCard';
 
 const BooksApi = async () => {
-    const res = await fetch('http://localhost:3000//data.json')
+    const res = await fetch('')
     const data = await res.json()
 
     const topBooks = data.slice(0, 4)
