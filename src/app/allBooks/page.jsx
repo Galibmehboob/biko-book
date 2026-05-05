@@ -31,12 +31,12 @@ const AllBooks = () => {
     });
 
     return (
-        <div className="w-11/12 mx-auto">
+        <div className="w-11/12  mx-auto">
             <h2 className="text-2xl font-bold text-center my-5 text-white bg-[#830039] rounded-2xl p-3">
                 All Books
             </h2>
 
-            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex mx-auto flex-col lg:flex-row gap-8">
 
 
                 <div className="lg:w-1/5 bg-gray-100 p-5 rounded-xl h-fit">
@@ -59,21 +59,21 @@ const AllBooks = () => {
                 </div>
 
 
-                <div className="lg:w-4/5">
+                <div className="lg:w-4/5  w-full mx-auto px-4 sm:px-0">
 
 
                     <div className="flex justify-center mb-6">
                         <input
                             type="text"
                             placeholder="Search by title..."
-                            className="border p-2 w-full md:w-1/2 rounded-md"
+                            className="border p-2 w-full sm:w-3/4 md:w-1/2 rounded-md"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
 
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center">
                         {filteredBooks.map((book) => (
                             <BookCard key={book.id} book={book} />
                         ))}

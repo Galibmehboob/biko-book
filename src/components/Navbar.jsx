@@ -4,17 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Avatar, Button, Drawer } from "@heroui/react";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
+    const router = useRouter();
     const [session, setSession] = useState(null);
 
     const handleSignOut = async () => {
         await authClient.signOut();
+
     };
 
     useEffect(() => {
@@ -75,7 +77,6 @@ const Navbar = () => {
                             <Button
                                 onClick={handleSignOut}
                                 size="sm"
-                                className=""
                             >
                                 Sign Out
                             </Button>
@@ -137,8 +138,9 @@ const Navbar = () => {
                                                     </Link>
 
                                                     <Button
+                                                        size="sm"
+                                                        variant="danger"
                                                         onClick={handleSignOut}
-                                                        className="bg-[#b90050] w-full"
                                                     >
                                                         Sign Out
                                                     </Button>
