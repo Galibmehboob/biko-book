@@ -28,23 +28,23 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Quick Links */}
+
                 <div>
                     <h3 className="text-white font-semibold mb-3">Quick Links</h3>
                     <ul className="space-y-2">
                         <li><Link href="/">Home</Link></li>
-                        <li><Link href="/books">All Books</Link></li>
+                        <li><Link href="/allBooks">All Books</Link></li>
                         <li><Link href="/profile">Profile</Link></li>
                     </ul>
                 </div>
 
-                {/* Social Links */}
+
                 <div>
                     <h3 className="text-white font-semibold mb-3">Follow Us</h3>
                     <div className="flex gap-4">
-                        <a href="#" className="hover:text-white">Facebook</a>
-                        <a href="#" className="hover:text-white">Twitter</a>
-                        <a href="#" className="hover:text-white">Instagram</a>
+                        <Link href="#" className="hover:text-white">Facebook</Link>
+                        <Link href="#" className="hover:text-white">Twitter</Link>
+                        <Link href="#" className="hover:text-white">Instagram</Link>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
 
 
             <div className="text-center text-sm text-gray-500 mt-8 border-t border-gray-700 pt-4">
-                © {new Date().getFullYear()} Biko Book. All rights reserved.
+                © {new Date().getFullYear()} Biko Book. All rights reserved. By <Link className="text-blue-500" href='https://www.facebook.com/heygalib.4U/'>Galib Mehboob</Link>
             </div>
         </footer>
     );

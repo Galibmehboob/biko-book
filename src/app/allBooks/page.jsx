@@ -39,7 +39,7 @@ const AllBooks = () => {
             <div className="flex flex-col lg:flex-row gap-6">
 
 
-                <div className="lg:w-1/4 bg-gray-100 p-5 rounded-xl h-fit">
+                <div className="lg:w-1/5 bg-gray-100 p-5 rounded-xl h-fit">
                     <h3 className="text-lg font-semibold mb-4">
                         Categories
                     </h3>
@@ -49,7 +49,7 @@ const AllBooks = () => {
                             key={cat}
                             onClick={() => setCategory(cat)}
                             className={`block w-full text-left px-4 py-2 mb-2 rounded cursor-pointer ${category === cat
-                                ? "bg-black text-white"
+                                ? "bg-[#830039] text-white"
                                 : "bg-white border"
                                 }`}
                         >
@@ -59,7 +59,7 @@ const AllBooks = () => {
                 </div>
 
 
-                <div className="lg:w-3/4">
+                <div className="lg:w-4/5">
 
 
                     <div className="flex justify-center mb-6">
