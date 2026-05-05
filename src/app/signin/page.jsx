@@ -3,29 +3,35 @@ import { authClient } from "@/lib/auth-client";
 import { ArrowRightToSquare } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { GrGoogle } from "react-icons/gr";
+import toast from "react-hot-toast";
+import Link from "next/link";
 
 const SignInPage = () => {
 
-
-
     const onSubmit = async (e) => {
         e.preventDefault();
+
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries());
-        console.log(userData);
 
-        const { data, error } = await authClient.signIn.email({
+        try {
+            const { data, error } = await authClient.signIn.email({
+                email: userData.email,
+                password: userData.password,
+                callbackURL: '/'
+            });
 
-            email: userData.email,
+            console.log("sign in Response", data, error);
 
-            password: userData.password,
+            if (error) {
+                toast.error(error.message || "Login failed!");
+                return;
+            }
 
-            callbackURL: '/'
-        })
-
-        console.log("sign Up Response", data, error);
-
-
+            toast.success("Login successful!");
+        } catch (err) {
+            toast.error("Something went wrong!");
+        }
     };
 
 
@@ -35,16 +41,16 @@ const SignInPage = () => {
                 provider: "google",
             });
 
-            console.log("SUCCESS:", res);
+
+            toast.success("Google login successful!", res);
         } catch (err) {
-            console.error("AUTH ERROR:", err);
+
+            toast.error("Google login failed!", err);
         }
     };
 
-
-
     return (
-        <div className="min-h-screen flex items-center justify-center  px-4 py-10">
+        <div className="min-h-screen flex items-center justify-center px-4 py-10">
             <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl border">
 
                 <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
@@ -52,10 +58,6 @@ const SignInPage = () => {
                 </h2>
 
                 <Form className="flex flex-col gap-5" onSubmit={onSubmit}>
-
-
-
-
 
                     <TextField
                         isRequired
@@ -83,16 +85,11 @@ const SignInPage = () => {
                         <FieldError />
                     </TextField>
 
-
-
-
-
                     <TextField
                         isRequired
                         minLength={8}
                         name="password"
                         type="password"
-
                     >
                         <Label className="mb-1 block text-sm font-medium text-gray-700">
                             Password
@@ -109,15 +106,7 @@ const SignInPage = () => {
                         </Description>
 
                         <FieldError />
-
-                        {/* {loginError && (
-                                <p className="text-sm text-red-500 mt-1">
-                                    {loginError}
-                                </p>
-                            )} */}
-
                     </TextField>
-
 
                     <div className="flex flex-col gap-3 sm:flex-row">
                         <Button
@@ -137,9 +126,24 @@ const SignInPage = () => {
                         </Button>
                     </div>
                 </Form>
+
                 <p className="text-center">Or</p>
 
-                <Button onClick={handleGoogleSignIn} variant="outline" className='w-full'> <GrGoogle></GrGoogle> Sign In With Google</Button>
+                <Button
+                    onClick={handleGoogleSignIn}
+                    variant="outline"
+                    className='w-full'
+                >
+                    <GrGoogle />
+                    Sign In With Google
+                </Button>
+
+                <p className="text-sm text-gray-600 mt-4  gap-2 flex items-center justify-center">
+                    Don’t have an account?
+                    <Link href="/signup" className="text-blue-600 hover:underline">
+                        Sign up
+                    </Link>
+                </p>
             </div>
         </div>
     );

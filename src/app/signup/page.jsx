@@ -2,6 +2,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { GrGoogle } from "react-icons/gr";
 
@@ -173,6 +174,13 @@ const SignUpPage = () => {
                 <p className="text-center">Or</p>
 
                 <Button onClick={handleGoogleSignIn} variant="outline" className='w-full'> <GrGoogle></GrGoogle> Sign In With Google</Button>
+
+                <p className="text-sm text-gray-600 mt-4  gap-2 flex items-center justify-center">
+                    Already have an account?
+                    <Link href="/signin" className="text-blue-600 hover:underline">
+                        Sign in
+                    </Link>
+                </p>
             </div>
         </div>
     );

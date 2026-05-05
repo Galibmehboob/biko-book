@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Avatar, Button } from "@heroui/react";
+import { Avatar, Button, Drawer } from "@heroui/react";
 
 import { usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -13,16 +14,14 @@ const Navbar = () => {
     const [session, setSession] = useState(null);
 
     const handleSignOut = async () => {
-        await authClient.signOut()
-    }
+        await authClient.signOut();
+    };
 
     useEffect(() => {
         authClient.getSession().then((res) => {
             setSession(res.data);
         });
     }, []);
-
-    console.log(session);
 
     return (
         <nav className="sticky top-0 z-50 px-4 md:px-6 py-2 text-white bg-white/70 backdrop-blur-md">
@@ -44,27 +43,15 @@ const Navbar = () => {
                 </Link>
 
                 <div className="hidden md:flex gap-8 text-black">
-                    <Link
-                        href="/"
-                        className={`px-3 py-1 rounded-md ${pathname === "/" ? "border-b-2 border-t-2 border-[#b90050] " : ""
-                            }`}
-                    >
+                    <Link href="/" className={`px-3 py-1 rounded-md ${pathname === "/" ? "border-b-2 border-t-2 border-[#b90050]" : ""}`}>
                         Home
                     </Link>
 
-                    <Link
-                        href="/allBooks"
-                        className={`px-3 py-1 rounded-md ${pathname === "/allBooks" ? "border-b-2 border-t-2 border-[#b90050] " : ""
-                            }`}
-                    >
+                    <Link href="/allBooks" className={`px-3 py-1 rounded-md ${pathname === "/allBooks" ? "border-b-2 border-t-2 border-[#b90050]" : ""}`}>
                         All Books
                     </Link>
 
-                    <Link
-                        href="/profile"
-                        className={`px-3 py-1 rounded-md ${pathname === "/profile" ? "border-b-2 border-t-2 border-[#b90050] " : ""
-                            }`}
-                    >
+                    <Link href="/profile" className={`px-3 py-1 rounded-md ${pathname === "/profile" ? "border-b-2 border-t-2 border-[#b90050]" : ""}`}>
                         Profile
                     </Link>
                 </div>
@@ -74,14 +61,24 @@ const Navbar = () => {
                         <div className="flex gap-3">
                             <Link href="/profile">
                                 <Avatar size="sm">
-                                    <Avatar.Image alt="John Doe" referrerPolicy="no-referrer" src={session.user?.image} />
-                                    <Avatar.Fallback>{session.user?.name?.slice(0, 2).toUpperCase()}</Avatar.Fallback>
+                                    <Avatar.Image
+                                        alt="John Doe"
+                                        referrerPolicy="no-referrer"
+                                        src={session.user?.image}
+                                    />
+                                    <Avatar.Fallback>
+                                        {session.user?.name?.slice(0, 2).toUpperCase()}
+                                    </Avatar.Fallback>
                                 </Avatar>
                             </Link>
 
-                            <Link href="/signin">
-                                <Button onClick={handleSignOut} size="sm" variant="danger" className="">Sign Out</Button>
-                            </Link>
+                            <Button
+                                onClick={handleSignOut}
+                                size="sm"
+                                className=""
+                            >
+                                Sign Out
+                            </Button>
                         </div>
                     ) : (
                         <div className="flex gap-3">
@@ -97,66 +94,82 @@ const Navbar = () => {
                 </div>
 
                 <div className="md:hidden text-black">
-                    <button
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        className="text-2xl"
-                    >
-                        ☰
-                    </button>
+                    <Drawer open={menuOpen} onOpenChange={setMenuOpen}>
+
+                        <Drawer.Trigger asChild>
+                            <FaBars />
+                        </Drawer.Trigger>
+
+                        <Drawer.Backdrop>
+                            <Drawer.Content placement="left">
+                                <Drawer.Dialog>
+
+                                    <Drawer.CloseTrigger />
+
+                                    <Drawer.Header>
+                                        <Drawer.Heading>Menu</Drawer.Heading>
+                                    </Drawer.Header>
+
+                                    <Drawer.Body>
+                                        <nav className="flex flex-col gap-3">
+
+                                            <Link href="/">Home</Link>
+                                            <Link href="/allBooks">All Books</Link>
+                                            <Link href="/profile">Profile</Link>
+
+                                            {session ? (
+                                                <div className="flex flex-col gap-3 mt-3">
+                                                    <Link href="/profile">
+                                                        <div className="flex items-center gap-3">
+                                                            <Avatar size="sm">
+                                                                <Avatar.Image
+                                                                    alt="John Doe"
+                                                                    referrerPolicy="no-referrer"
+                                                                    src={session.user?.image}
+                                                                />
+                                                                <Avatar.Fallback>
+                                                                    {session.user?.name?.slice(0, 2).toUpperCase()}
+                                                                </Avatar.Fallback>
+                                                            </Avatar>
+
+                                                            <span>{session.user?.name}</span>
+                                                        </div>
+                                                    </Link>
+
+                                                    <Button
+                                                        onClick={handleSignOut}
+                                                        className="bg-[#b90050] w-full"
+                                                    >
+                                                        Sign Out
+                                                    </Button>
+                                                </div>
+                                            ) : (
+                                                <div className="flex flex-col gap-3 mt-3">
+                                                    <Link href="/signin">
+                                                        <Button className="bg-[#b90050] w-full">
+                                                            Sign In
+                                                        </Button>
+                                                    </Link>
+
+                                                    <Link href="/signup">
+                                                        <Button className="bg-[#b90050] w-full">
+                                                            Sign Up
+                                                        </Button>
+                                                    </Link>
+                                                </div>
+                                            )}
+
+                                        </nav>
+                                    </Drawer.Body>
+
+                                </Drawer.Dialog>
+                            </Drawer.Content>
+                        </Drawer.Backdrop>
+                    </Drawer>
                 </div>
             </div>
 
-            {menuOpen && (
-                <div className="mt-4 pb-4 flex flex-col text-black gap-4 md:hidden">
-                    <Link href="/">Home</Link>
-                    <Link href="/allBooks">All Books</Link>
-                    <Link href="/profile">Profile</Link>
 
-                    {session ? (
-                        <div className="flex flex-col gap-3">
-                            <Link href="/profile">
-                                <div className="flex items-center gap-3">
-                                    <Avatar size="sm">
-                                        <Avatar.Image
-                                            alt="John Doe"
-                                            referrerPolicy="no-referrer"
-                                            src={session.user?.image}
-                                        />
-                                        <Avatar.Fallback>
-                                            {session.user?.name?.slice(0, 2).toUpperCase()}
-                                        </Avatar.Fallback>
-                                    </Avatar>
-
-                                    <span>{session.user?.name}</span>
-                                </div>
-                            </Link>
-
-                            <Link href="/signin">
-                                <Button
-                                    onClick={handleSignOut}
-                                    className="bg-[#b90050] w-full"
-                                >
-                                    Sign Out
-                                </Button>
-                            </Link>
-                        </div>
-                    ) : (
-                        <div className="flex flex-col gap-3">
-                            <Link href="/signin">
-                                <Button className="bg-[#b90050] w-full">
-                                    Sign In
-                                </Button>
-                            </Link>
-
-                            <Link href="/signup">
-                                <Button className="bg-[#b90050] w-full">
-                                    Sign Up
-                                </Button>
-                            </Link>
-                        </div>
-                    )}
-                </div>
-            )}
         </nav>
     );
 };
